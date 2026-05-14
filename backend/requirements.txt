@@ -61,6 +61,38 @@ cryptography==43.0.3
 # --- User-Agent Parsing ---
 user-agents==2.2.0
 
+# ============================================================
+# PHASE 4 — Document Ingestion Pipeline
+# ============================================================
+
+# --- OCR ---
+pytesseract==0.3.13
+Pillow==11.0.0
+
+# --- PDF Processing ---
+pdfplumber==0.11.4
+PyMuPDF==1.24.13
+
+# --- Background Tasks ---
+celery==5.4.0
+redis==5.2.0
+
+# --- File Storage ---
+boto3==1.35.74                 # AWS S3 (also compatible with MinIO)
+aiofiles==24.1.0
+
+# --- Document Processing ---
+python-docx==1.1.2
+openpyxl==3.1.5
+chardet==5.2.0
+langdetect==1.0.9
+
+# --- Image Processing ---
+opencv-python-headless==4.10.0.84
+
+# --- Retry ---
+tenacity==9.0.0
+
 # --- Utilities ---
 python-dateutil==2.9.0
 pytz==2024.2

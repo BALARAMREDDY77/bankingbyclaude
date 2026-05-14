@@ -90,6 +90,46 @@ class LoggingSettings(BaseSettings):
     file_path: str = Field(default="/var/log/banking-platform/app.log")
 
 
+class DocumentPipelineSettings(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="DOC_", env_file=".env", extra="ignore")
+
+    # Storage backend: local | s3 | gcs | azure
+    storage_backend: str = Field(default="local")
+    local_storage_path: str = Field(default="/tmp/banking_docs")
+
+    # S3 / MinIO
+    s3_bucket: str = Field(default="banking-documents")
+    s3_region: str = Field(default="ap-south-1")
+    s3_endpoint_url: Optional[str] = Field(default=None)   # MinIO override
+    s3_access_key: str = Field(default="")
+    s3_secret_key: str = Field(default="")
+
+    # OCR
+    tesseract_cmd: str = Field(default="/usr/bin/tesseract")
+    ocr_languages: str = Field(default="eng+hin")           # Tesseract lang codes
+    ocr_dpi: int = Field(default=300)
+    ocr_timeout_seconds: int = Field(default=60)
+
+    # Pipeline
+    max_pages_per_doc: int = Field(default=50)
+    max_file_size_mb: int = Field(default=20)
+    chunk_size_chars: int = Field(default=1000)
+    chunk_overlap_chars: int = Field(default=200)
+    processing_concurrency: int = Field(default=4)
+
+    # Retry
+    max_retries: int = Field(default=3)
+    retry_delay_seconds: float = Field(default=2.0)
+
+    # Celery
+    celery_broker_url: str = Field(default="redis://localhost:6379/1")
+    celery_result_backend: str = Field(default="redis://localhost:6379/2")
+
+    @property
+    def ocr_languages_list(self) -> List[str]:
+        return [l.strip() for l in self.ocr_languages.split("+")]
+
+
 class AuthSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="AUTH_", env_file=".env", extra="ignore")
 
@@ -173,6 +213,7 @@ class AppSettings(BaseSettings):
     logging: LoggingSettings = Field(default_factory=LoggingSettings)
     cors: CORSSettings = Field(default_factory=CORSSettings)
     auth: AuthSettings = Field(default_factory=AuthSettings)
+    documents: DocumentPipelineSettings = Field(default_factory=DocumentPipelineSettings)
 
     @property
     def is_production(self) -> bool:
