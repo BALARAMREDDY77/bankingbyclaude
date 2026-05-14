@@ -1,0 +1,27 @@
+{
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "error": "एक त्रुटि हुई",
+    "retry": "पुनः प्रयास करें",
+    "cancel": "रद्द करें",
+    "confirm": "पुष्टि करें",
+    "save": "सहेजें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "view": "देखें",
+    "back": "वापस",
+    "next": "अगला",
+    "search": "खोजें"
+  },
+  "nav": {
+    "dashboard": "डैशबोर्ड",
+    "accounts": "खाते",
+    "transactions": "लेनदेन",
+    "agents": "AI एजेंट",
+    "settings": "सेटिंग्स"
+  },
+  "health": {
+    "status_healthy": "सभी सिस्टम सामान्य हैं",
+    "status_degraded": "कुछ सिस्टम ख़राब हैं"
+  }
+}

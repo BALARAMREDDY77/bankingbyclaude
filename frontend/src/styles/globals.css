@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Design Token System
+   All colors use HSL so Tailwind opacity modifiers work
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* Light theme */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 9%;
+
+    --primary: 215 75% 20%;          /* banking navy */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 215 20% 94%;
+    --secondary-foreground: 215 25% 15%;
+
+    --muted: 215 15% 95%;
+    --muted-foreground: 215 15% 45%;
+
+    --accent: 215 60% 55%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 15% 88%;
+    --input: 215 15% 88%;
+    --ring: 215 75% 30%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark theme */
+    --background: 215 30% 7%;
+    --foreground: 215 10% 95%;
+
+    --card: 215 25% 10%;
+    --card-foreground: 215 10% 95%;
+
+    --popover: 215 25% 10%;
+    --popover-foreground: 215 10% 95%;
+
+    --primary: 215 65% 55%;
+    --primary-foreground: 215 30% 7%;
+
+    --secondary: 215 20% 15%;
+    --secondary-foreground: 215 10% 90%;
+
+    --muted: 215 20% 14%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 215 60% 55%;
+    --accent-foreground: 215 30% 7%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 20% 18%;
+    --input: 215 20% 18%;
+    --ring: 215 65% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus visible styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  /* Banking-specific utility classes */
+  .text-positive {
+    @apply text-green-600 dark:text-green-400;
+  }
+
+  .text-negative {
+    @apply text-red-600 dark:text-red-400;
+  }
+
+  .glass-card {
+    @apply bg-white/70 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out;
+  }
+}

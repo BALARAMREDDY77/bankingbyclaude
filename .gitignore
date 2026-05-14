@@ -1,0 +1,51 @@
+# ── Environment files ──────────────────────────────────────
+.env
+.env.local
+.env.production
+backend/.env
+frontend/.env
+
+# ── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+coverage.xml
+*.cover
+
+# ── Node / Frontend ─────────────────────────────────────────
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+
+# ── Docker ──────────────────────────────────────────────────
+*.log
+
+# ── OS ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDE ─────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Alembic ─────────────────────────────────────────────────
+# Keep versions tracked
+# alembic/versions/
+
+# ── Secrets (belt and suspenders) ───────────────────────────
+*.pem
+*.key
+*.cert
+*.p12

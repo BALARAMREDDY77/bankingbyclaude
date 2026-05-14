@@ -1,0 +1,24 @@
+[ruff]
+target-version = "py312"
+line-length = 100
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # bugbear
+    "C4",  # comprehensions
+    "UP",  # pyupgrade
+    "N",   # pep8-naming
+]
+ignore = [
+    "E501",   # line length (handled by formatter)
+    "B008",   # FastAPI Depends() in function defaults is fine
+]
+exclude = ["alembic/versions/"]
+
+[ruff.isort]
+known-first-party = ["app"]
+
+[ruff.per-file-ignores]
+"tests/**" = ["S101"]  # Allow assert in tests
