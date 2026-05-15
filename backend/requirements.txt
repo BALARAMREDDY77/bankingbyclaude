@@ -93,6 +93,31 @@ opencv-python-headless==4.10.0.84
 # --- Retry ---
 tenacity==9.0.0
 
+# ============================================================
+# PHASE 5 — RAG Foundation
+# ============================================================
+
+# --- Vector Embeddings ---
+sentence-transformers==3.3.1
+transformers==4.47.1
+torch==2.5.1
+
+# --- pgvector ---
+pgvector==0.3.6
+
+# --- BM25 ---
+rank-bm25==0.2.2
+nltk==3.9.1
+
+# --- Reranking ---
+cohere==5.13.3
+
+# --- Multilingual ---
+langdetect==1.0.9
+
+# --- Caching ---
+msgpack==1.1.0
+
 # --- Utilities ---
 python-dateutil==2.9.0
 pytz==2024.2

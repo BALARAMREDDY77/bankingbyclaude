@@ -39,3 +39,6 @@ __all__ = [
     "Alert", "AlertType", "AlertSeverity", "AlertStatus",
     "SystemMetric", "MetricType",
 ]
+
+# Phase 5 — Vector store models
+from app.db.models.vector_store import DocumentVector, KnowledgeBase

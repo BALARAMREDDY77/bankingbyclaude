@@ -90,6 +90,42 @@ class LoggingSettings(BaseSettings):
     file_path: str = Field(default="/var/log/banking-platform/app.log")
 
 
+class RAGSettings(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="RAG_", env_file=".env", extra="ignore")
+
+    # Embedding model
+    embedding_model: str = Field(default="sentence-transformers/paraphrase-multilingual-mpnet-base-v2")
+    embedding_dimension: int = Field(default=768)
+    embedding_batch_size: int = Field(default=32)
+    embedding_cache_ttl: int = Field(default=86400)       # 24h cache for embeddings
+
+    # Retrieval
+    top_k_semantic: int = Field(default=10)
+    top_k_bm25: int = Field(default=10)
+    top_k_hybrid: int = Field(default=20)
+    top_k_final: int = Field(default=5)                   # After reranking
+    similarity_threshold: float = Field(default=0.3)
+    hybrid_alpha: float = Field(default=0.6)              # Weight: semantic vs BM25 (0=BM25, 1=semantic)
+
+    # Reranking
+    reranker_enabled: bool = Field(default=True)
+    reranker_model: str = Field(default="rerank-multilingual-v3.0")
+    cohere_api_key: str = Field(default="")
+
+    # pgvector
+    vector_index_type: str = Field(default="ivfflat")     # ivfflat | hnsw
+    vector_index_lists: int = Field(default=100)          # IVFFlat lists
+    hnsw_m: int = Field(default=16)
+    hnsw_ef_construction: int = Field(default=64)
+
+    # Knowledge bases
+    default_knowledge_base: str = Field(default="general_banking")
+    max_context_chars: int = Field(default=8000)
+
+    # Observability
+    retrieval_logging_enabled: bool = Field(default=True)
+
+
 class DocumentPipelineSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="DOC_", env_file=".env", extra="ignore")
 
@@ -214,6 +250,7 @@ class AppSettings(BaseSettings):
     cors: CORSSettings = Field(default_factory=CORSSettings)
     auth: AuthSettings = Field(default_factory=AuthSettings)
     documents: DocumentPipelineSettings = Field(default_factory=DocumentPipelineSettings)
+    rag: RAGSettings = Field(default_factory=RAGSettings)
 
     @property
     def is_production(self) -> bool:
