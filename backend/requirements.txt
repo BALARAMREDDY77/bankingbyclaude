@@ -118,6 +118,26 @@ langdetect==1.0.9
 # --- Caching ---
 msgpack==1.1.0
 
+# ============================================================
+# PHASE 6 — LangGraph Orchestration
+# ============================================================
+
+# --- LangGraph ---
+langgraph==0.2.60
+langchain==0.3.14
+langchain-core==0.3.29
+langchain-anthropic==0.3.4
+langchain-community==0.3.14
+
+# --- Anthropic ---
+anthropic==0.42.0
+
+# --- Streaming ---
+sse-starlette==2.2.1
+
+# --- Structured outputs ---
+instructor==1.7.0
+
 # --- Utilities ---
 python-dateutil==2.9.0
 pytz==2024.2

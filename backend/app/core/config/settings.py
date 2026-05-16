@@ -90,6 +90,40 @@ class LoggingSettings(BaseSettings):
     file_path: str = Field(default="/var/log/banking-platform/app.log")
 
 
+class OrchestrationSettings(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="ORCH_", env_file=".env", extra="ignore")
+
+    # LLM
+    anthropic_api_key: str = Field(default="")
+    default_model: str = Field(default="claude-sonnet-4-20250514")
+    fallback_model: str = Field(default="claude-haiku-4-5-20251001")
+    max_tokens: int = Field(default=4096)
+    temperature: float = Field(default=0.1)
+
+    # Graph execution
+    max_iterations: int = Field(default=25)
+    recursion_limit: int = Field(default=50)
+    node_timeout_seconds: int = Field(default=60)
+    graph_timeout_seconds: int = Field(default=300)
+
+    # Retry policy
+    max_retries: int = Field(default=3)
+    retry_delay_seconds: float = Field(default=1.0)
+    retry_backoff_multiplier: float = Field(default=2.0)
+
+    # Confidence thresholds
+    min_confidence_threshold: float = Field(default=0.6)
+    escalation_threshold: float = Field(default=0.4)
+
+    # Streaming
+    streaming_enabled: bool = Field(default=True)
+    stream_chunk_size: int = Field(default=10)
+
+    # Observability
+    trace_enabled: bool = Field(default=True)
+    trace_persist: bool = Field(default=True)       # Persist traces to DB
+
+
 class RAGSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="RAG_", env_file=".env", extra="ignore")
 
@@ -251,6 +285,7 @@ class AppSettings(BaseSettings):
     auth: AuthSettings = Field(default_factory=AuthSettings)
     documents: DocumentPipelineSettings = Field(default_factory=DocumentPipelineSettings)
     rag: RAGSettings = Field(default_factory=RAGSettings)
+    orchestration: OrchestrationSettings = Field(default_factory=OrchestrationSettings)
 
     @property
     def is_production(self) -> bool:
