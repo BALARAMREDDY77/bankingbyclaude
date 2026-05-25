@@ -12,6 +12,7 @@ from app.api.v1.endpoints.auth import router as auth_router
 from app.api.v1.endpoints.documents import router as documents_router
 from app.api.v1.endpoints.rag import router as rag_router
 from app.api.v1.endpoints.orchestration import router as orchestration_router
+from app.api.v1.endpoints.agents import router as agents_router
 
 # Root v1 router
 api_v1_router = APIRouter()
@@ -30,3 +31,6 @@ api_v1_router.include_router(rag_router)
 
 # ── Orchestration (Phase 6) ──────────────────
 api_v1_router.include_router(orchestration_router)
+
+# ── AI Agents (Phase 7) ──────────────────────
+api_v1_router.include_router(agents_router)
